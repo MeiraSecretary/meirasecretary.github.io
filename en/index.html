@@ -122,18 +122,18 @@
       <h2>You keep a calendar. She handles the rest.</h2>
     </div>
     <div class="tiles">
-      <article class="tile"><span class="tile-ic" aria-hidden="true">🗓️</span><h3>Every calendar, one place</h3><p>Google, your phone, Outlook and Teams.</p></article>
-      <article class="tile"><span class="tile-ic" aria-hidden="true">⏪</span><h3>Works backwards</h3><p>From the meeting to your alarm.</p></article>
-      <article class="tile"><span class="tile-ic" aria-hidden="true">⏰</span><h3>An alarm that sets itself</h3><p>From the time you need to leave.</p></article>
-      <article class="tile"><span class="tile-ic" aria-hidden="true">🚌</span><h3>The best way there</h3><p>Bus, train, taxi, car or bike.</p></article>
-      <article class="tile"><span class="tile-ic" aria-hidden="true">🚧</span><h3>Trouble on your route</h3><p>Strikes, works and traffic from the news.</p></article>
-      <article class="tile"><span class="tile-ic" aria-hidden="true">📍</span><h3>Clashes between places</h3><p>Can I make Herzliya to Holon?</p></article>
-      <article class="tile"><span class="tile-ic" aria-hidden="true">🔁</span><h3>Meeting moved?</h3><p>Alternatives based on where you'll be.</p></article>
-      <article class="tile"><span class="tile-ic" aria-hidden="true">🎯</span><h3>Interview prep</h3><p>Study time, research on the interviewer, a recap of last time.</p></article>
-      <article class="tile"><span class="tile-ic" aria-hidden="true">🧠</span><h3>Knows you</h3><p>Get-ready time, workouts, car or no car.</p></article>
-      <article class="tile"><span class="tile-ic" aria-hidden="true">🔔</span><h3>Nudge meter</h3><p>You choose how hard she pushes.</p></article>
-      <article class="tile"><span class="tile-ic" aria-hidden="true">📵</span><h3>Study mode</h3><p>Blocks WhatsApp, Instagram and TikTok.</p></article>
-      <article class="tile tile-soon"><span class="tile-ic" aria-hidden="true">🤝</span><h3>Group time</h3><p>Finds a slot that works for everyone.</p><span class="tag tag-soon">Soon</span></article>
+      <article class="tile" data-f="calendars" tabindex="0" role="button" aria-haspopup="dialog"><span class="tile-ic" aria-hidden="true">🗓️</span><h3>Every calendar, one place</h3><p>Google, your phone, Outlook and Teams.</p></article>
+      <article class="tile" data-f="backwards" tabindex="0" role="button" aria-haspopup="dialog"><span class="tile-ic" aria-hidden="true">⏪</span><h3>Works backwards</h3><p>From the meeting to your alarm.</p></article>
+      <article class="tile" data-f="alarm" tabindex="0" role="button" aria-haspopup="dialog"><span class="tile-ic" aria-hidden="true">⏰</span><h3>An alarm that sets itself</h3><p>From the time you need to leave.</p></article>
+      <article class="tile" data-f="route" tabindex="0" role="button" aria-haspopup="dialog"><span class="tile-ic" aria-hidden="true">🚌</span><h3>The best way there</h3><p>Bus, train, taxi, car or bike.</p></article>
+      <article class="tile" data-f="disruptions" tabindex="0" role="button" aria-haspopup="dialog"><span class="tile-ic" aria-hidden="true">🚧</span><h3>Trouble on your route</h3><p>Strikes, works and traffic from the news.</p></article>
+      <article class="tile" data-f="clash" tabindex="0" role="button" aria-haspopup="dialog"><span class="tile-ic" aria-hidden="true">📍</span><h3>Clashes between places</h3><p>Can I make Herzliya to Holon?</p></article>
+      <article class="tile" data-f="moved" tabindex="0" role="button" aria-haspopup="dialog"><span class="tile-ic" aria-hidden="true">🔁</span><h3>Meeting moved?</h3><p>Alternatives based on where you'll be.</p></article>
+      <article class="tile" data-f="prep" tabindex="0" role="button" aria-haspopup="dialog"><span class="tile-ic" aria-hidden="true">🎯</span><h3>Interview prep</h3><p>Study time, research on the interviewer, a recap of last time.</p></article>
+      <article class="tile" data-f="knows" tabindex="0" role="button" aria-haspopup="dialog"><span class="tile-ic" aria-hidden="true">🧠</span><h3>Knows you</h3><p>Get-ready time, workouts, car or no car.</p></article>
+      <article class="tile" data-f="nudge" tabindex="0" role="button" aria-haspopup="dialog"><span class="tile-ic" aria-hidden="true">🔔</span><h3>Nudge meter</h3><p>You choose how hard she pushes.</p></article>
+      <article class="tile" data-f="focus" tabindex="0" role="button" aria-haspopup="dialog"><span class="tile-ic" aria-hidden="true">📵</span><h3>Study mode</h3><p>During study time she blocks WhatsApp, Instagram, TikTok and any app you pick.</p></article>
+      <article class="tile tile-soon" data-f="group" tabindex="0" role="button" aria-haspopup="dialog"><span class="tile-ic" aria-hidden="true">🤝</span><h3>Group time</h3><p>Finds a slot that works for everyone.</p><span class="tag tag-soon">Soon</span></article>
     </div>
   </div>
 </section>
@@ -259,6 +259,15 @@
   </footer>
 </div>
 
+<dialog id="feat-dialog" aria-labelledby="fd-title">
+  <div class="fd">
+    <button type="button" class="fd-close" aria-label="Close">×</button>
+    <span class="fd-ic" id="fd-ic" aria-hidden="true"></span>
+    <h3 id="fd-title"></h3>
+    <p id="fd-detail"></p>
+    <div class="fd-phone"><div class="fd-bar"><span class="fd-dot"></span><b>Meira</b></div><ol class="fd-msgs" id="fd-msgs" aria-live="polite"></ol><button type="button" class="fd-replay" id="fd-replay"></button></div>
+  </div>
+</dialog>
 <script src="../app.js"></script>
 </body>
 </html>

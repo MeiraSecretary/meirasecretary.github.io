@@ -254,3 +254,114 @@
     });
   });
 })();
+
+// ---------- feature tiles → detail + animated demo ----------
+// Each tile opens one dialog: a short explanation and Meira's messages
+// appearing one by one, the way they would on the phone. `me` marks the
+// user's own reply; `warn` / `ok` colour a message by what it means.
+(function () {
+  "use strict";
+  const dlg = document.getElementById("feat-dialog");
+  if (!dlg) return;
+  const L = document.documentElement.lang === "he" ? "he" : "en";
+
+  const F = {
+    he: {
+      replay: "↻ עוד פעם",
+      calendars: { ic: "🗓️", title: "כל היומנים במקום אחד", detail: "מחברים את Google Calendar, את Outlook ו-Teams ואת היומנים שבטלפון, גם כמה חשבונות. מאירה רואה הכול יחד, פגישה כפולה נספרת פעם אחת, ובין פגישות היא מוסיפה את הנסיעה.", demo: [
+        { m: "✓ גוגל, Outlook והטלפון מחוברים", k: "ok" }, { m: "09:30 · פגישת צוות (Teams)" }, { m: "12:45 · 🚌 נסיעה לחולון, 35 דק׳" }, { m: "13:20 · 🦷 רופא שיניים בחולון" } ] },
+      backwards: { ic: "⏪", title: "גוזרת זמנים אחורה", detail: "מהשעה של הפגישה מאירה סופרת אחורה: הנסיעה, ההתארגנות, ההכנה, ועד השעון המעורר. אתם רק מקבלים את השעות.", demo: [
+        { m: "10:00 · 🎯 ראיון ברעננה" }, { m: "08:36 · 🚌 קו 29 (מגיע 09:44)" }, { m: "08:28 · 🚪 יציאה מהבית" }, { m: "07:43 · 👕 התארגנות, 45 דק׳" }, { m: "07:10 · ⏰ השכמה", k: "ok" } ] },
+      alarm: { ic: "⏰", title: "שעון מעורר שמכוון את עצמו", detail: "שעון אמיתי בשעון של הטלפון, מחושב מהשעה שצריך לצאת. הוא מופיע תמיד במסך היום, ואפשר לכבות או להזיז אותו בלחיצה.", demo: [
+        { m: "⏰ כיוונתי שעון למחר ב-07:10", k: "ok" }, { m: "למה? האוטובוס של 08:36, ו-45 דק׳ להתארגן" }, { m: "אפשר 06:45? רוצה לרוץ לפני", k: "me" }, { m: "⏰ עודכן ל-06:45 ✓", k: "ok" } ] },
+      route: { ic: "🚌", title: "הדרך הכי טובה", detail: "מאירה מתחילה מהדרך שאתם אוהבים. אם היא לא מביאה אתכם בזמן, היא בוחרת את הבאה ואומרת למה. היא משווה דלת לדלת, כולל הליכה, המתנה וחניה.", demo: [
+        { m: "🚆 רכבת 08:32 · מגיעה 10:04", k: "warn" }, { m: "🚌 קו 29 ב-08:36 · מגיע 09:44", k: "ok" }, { m: "🚗 ברכב · יציאה 08:50, עם חניה" }, { m: "אין רכבת בזמן, אז קו 29 🚌" } ] },
+      disruptions: { ic: "🚧", title: "תקלות בדרך", detail: "לפני שיוצאים מאירה בודקת בחדשות שיבושים במסלול שלכם: עבודות ברכבת, סגירות, שביתות, תאונות ועומסים. יש משהו? תשמעו לפני שיוצאים, עם קישור לכתבה.", demo: [
+        { m: "🔎 בודקת את המסלול לחיפה…" }, { m: "⚠️ דווח על עבודות בקו לחיפה הבוקר", k: "warn" }, { m: "כדאי לבדוק לפני שיוצאים · לכתבה ›" } ] },
+      clash: { ic: "📍", title: "התנגשות בין מקומות", detail: "שתי פגישות לא חופפות ביומן, אבל בערים שונות? מאירה בודקת אם יש מספיק זמן לנסיעה ביניהן, ומתריעה מראש.", demo: [
+        { m: "12:00–12:45 · פגישה בהרצליה" }, { m: "13:00 · רופא בחולון" }, { m: "🚗 35 דק׳ נסיעה, מגיעים ב-13:20" }, { m: "⚠️ לא מספיקים. להזיז ל-13:30?", k: "warn" } ] },
+      moved: { ic: "🔁", title: "פגישה זזה?", detail: "כשפגישה זזה או מתבטלת, מאירה מזהה לבד, גם כשהאפליקציה סגורה. היא מספרת לכם ומציעה שעות שבאמת אפשריות, לפי איפה תהיו לפני ואחרי.", demo: [
+        { m: "🗓️ הפגישה של 14:00 בוטלה", k: "warn" }, { m: "התפנו לך שעתיים. ללמוד לראיון?" }, { m: "כן", k: "me" }, { m: "📚 14:00–15:30 למידה ✓", k: "ok" } ] },
+      prep: { ic: "🎯", title: "מכינה לראיון", detail: "כשיש ראיון או מבחן, מאירה קובעת זמני הכנה יומיים לפני, יום לפני ובבוקר עצמו. היא מחפשת באינטרנט על החברה, התפקיד והמראיין, ויום לפני מגיע סיכום של מה שהיה בפעם הקודמת.", demo: [
+        { m: "📚 ראיון בעוד יומיים. הכנה הערב ב-19:00" }, { m: "🔎 3 דברים על החברה (עם מקורות)" }, { m: "❓ 3 שאלות שכדאי לשאול" }, { m: "🗂️ בפעם הקודמת דיברתם על התקציב", k: "ok" } ] },
+      knows: { ic: "🧠", title: "מכירה אתכם", detail: "מאירה לומדת כמה זמן לוקח לכם להתארגן, מתי אתם מתאמנים, באילו ימים אתם פנויים ואם יש לכם רכב. כשהיא טועה, היא מתקנת את עצמה.", demo: [
+        { m: "יש לך רכב?" }, { m: "לא", k: "me" }, { m: "✓ אז אתכנן בתחבורה ציבורית", k: "ok" }, { m: "⏱️ התארגנות לקחה 45 דק׳, לא 30. נרשם" } ] },
+      nudge: { ic: "🔔", title: "מדד נודניקיות", detail: "בסרגל בפרופיל בוחרים כמה מאירה דוחפת, ממזכירה עדינה ועד מאמנת שלא מוותרת. אותה משימה, שלוש דרכים להגיד אותה:", demo: [
+        { m: "🔔 עדין · אולי כדאי ללמוד היום?" }, { m: "🔔🔔 באמצע · קבעתי לך זמן ללמוד ב-19:00" }, { m: "🔔🔔🔔 חזק · 19:00 לומדים. בלי תירוצים 💪", k: "warn" } ] },
+      focus: { ic: "📵", title: "מצב למידה", detail: "כשמגיע זמן למידה ביומן, מאירה חוסמת את וואטסאפ, אינסטגרם, טיקטוק וכל אפליקציה שתבחרו. מנסים להתגנב? נזיפה קצרה. לסיים מוקדם אפשר רק אחרי ספירה של 10 שניות.", demo: [
+        { m: "📚 19:00 · מתחילים ללמוד" }, { m: "🔒 וואטסאפ, אינסטגרם וטיקטוק חסומים", k: "ok" }, { m: "📱 פותחים את אינסטגרם…", k: "me" }, { m: "😤 אמרנו שלומדים! חוזרים?", k: "warn" } ] },
+      group: { ic: "🤝", title: "זמן משותף לקבוצה · בקרוב", detail: "בקרוב: מאירה תסתכל על היומנים של כל המשתתפים ותמצא שעה שמתאימה לכולם, כולל הנסיעה של כל אחד.", demo: [
+        { m: "👥 5 משתתפים" }, { m: "🔎 בודקת את היומנים של כולם…" }, { m: "🤝 חמישי 17:00 מתאים לכולם", k: "ok" } ] }
+    },
+    en: {
+      replay: "↻ Play again",
+      calendars: { ic: "🗓️", title: "Every calendar, one place", detail: "Connect Google Calendar, Outlook and Teams, and the calendars on your phone, even several accounts. Meira sees them together, a meeting in two calendars counts once, and she adds the trip between meetings.", demo: [
+        { m: "✓ Google, Outlook and phone connected", k: "ok" }, { m: "09:30 · Team meeting (Teams)" }, { m: "12:45 · 🚌 Trip to Holon, 35 min" }, { m: "13:20 · 🦷 Dentist in Holon" } ] },
+      backwards: { ic: "⏪", title: "Works backwards", detail: "From the meeting's start time Meira counts back through the trip, getting ready and prep, all the way to your alarm. You just get the times.", demo: [
+        { m: "10:00 · 🎯 Interview in Ra'anana" }, { m: "08:36 · 🚌 Bus 29 (arrives 09:44)" }, { m: "08:28 · 🚪 Leave home" }, { m: "07:43 · 👕 Get ready, 45 min" }, { m: "07:10 · ⏰ Wake up", k: "ok" } ] },
+      alarm: { ic: "⏰", title: "An alarm that sets itself", detail: "A real alarm in your phone's Clock, worked out from when you need to leave. It always shows on the Today screen, and one tap turns it off or moves it.", demo: [
+        { m: "⏰ Alarm set for tomorrow, 07:10", k: "ok" }, { m: "Why? The 08:36 bus, and 45 min to get ready" }, { m: "Make it 06:45? I want a run first", k: "me" }, { m: "⏰ Moved to 06:45 ✓", k: "ok" } ] },
+      route: { ic: "🚌", title: "The best way there", detail: "Meira starts with the way you like. If it won't get you there on time, she picks the next one and says why. She compares door to door, including walking, waiting and parking.", demo: [
+        { m: "🚆 Train 08:32 · arrives 10:04", k: "warn" }, { m: "🚌 Bus 29 at 08:36 · arrives 09:44", k: "ok" }, { m: "🚗 By car · leave 08:50, parking included" }, { m: "No train in time, so Bus 29 🚌" } ] },
+      disruptions: { ic: "🚧", title: "Trouble on your route", detail: "Before you leave, Meira checks the news for disruptions on your route: train works, closures, strikes, accidents and heavy traffic. If there's something, you hear about it first, with a link to the story.", demo: [
+        { m: "🔎 Checking your route to Haifa…" }, { m: "⚠️ Works reported on the Haifa line this morning", k: "warn" }, { m: "Worth checking before you leave · Read ›" } ] },
+      clash: { ic: "📍", title: "Clashes between places", detail: "Two meetings don't overlap on the calendar, but they're in different cities? Meira checks there's enough time for the trip between them, and warns you early.", demo: [
+        { m: "12:00–12:45 · Meeting in Herzliya" }, { m: "13:00 · Doctor in Holon" }, { m: "🚗 35 min drive, you'd arrive 13:20" }, { m: "⚠️ You won't make it. Move it to 13:30?", k: "warn" } ] },
+      moved: { ic: "🔁", title: "Meeting moved?", detail: "When a meeting moves or is cancelled, Meira notices on her own, even with the app closed. She tells you and suggests times that actually work, based on where you'll be before and after.", demo: [
+        { m: "🗓️ Your 14:00 was cancelled", k: "warn" }, { m: "You have 2 free hours. Study for the interview?" }, { m: "Yes", k: "me" }, { m: "📚 14:00–15:30 study ✓", k: "ok" } ] },
+      prep: { ic: "🎯", title: "Interview prep", detail: "For an interview or exam, Meira books prep time two days before, the day before and on the morning itself. She searches the web for the company, the role and the interviewer, and the day before you get a recap of last time.", demo: [
+        { m: "📚 Interview in 2 days. Prep tonight at 19:00" }, { m: "🔎 3 things about the company (with sources)" }, { m: "❓ 3 questions worth asking" }, { m: "🗂️ Last time you discussed the budget", k: "ok" } ] },
+      knows: { ic: "🧠", title: "Knows you", detail: "Meira learns how long you take to get ready, when you work out, which days you're free and whether you have a car. When she's wrong, she corrects herself.", demo: [
+        { m: "Do you have a car?" }, { m: "No", k: "me" }, { m: "✓ Then I'll plan with public transport", k: "ok" }, { m: "⏱️ Getting ready took 45 min, not 30. Noted" } ] },
+      nudge: { ic: "🔔", title: "Nudge meter", detail: "A slider in your profile sets how hard Meira pushes, from a gentle reminder to a coach who doesn't let go. One task, three ways to say it:", demo: [
+        { m: "🔔 Gentle · Maybe study today?" }, { m: "🔔🔔 Medium · I booked you study time at 19:00" }, { m: "🔔🔔🔔 Firm · 19:00 we study. No excuses 💪", k: "warn" } ] },
+      focus: { ic: "📵", title: "Study mode", detail: "When study time on your calendar starts, Meira blocks WhatsApp, Instagram, TikTok and any app you pick. Try to sneak in and you get a short pep talk. Ending early takes a 10-second countdown.", demo: [
+        { m: "📚 19:00 · Study time starts" }, { m: "🔒 WhatsApp, Instagram and TikTok blocked", k: "ok" }, { m: "📱 Opening Instagram…", k: "me" }, { m: "😤 You said you were studying! Back to it?", k: "warn" } ] },
+      group: { ic: "🤝", title: "Group time · coming soon", detail: "Coming soon: Meira will look at every participant's calendar and find a time that works for everyone, including each person's trip.", demo: [
+        { m: "👥 5 participants" }, { m: "🔎 Checking everyone's calendar…" }, { m: "🤝 Thursday 17:00 works for all", k: "ok" } ] }
+    }
+  }[L];
+
+  const $ = (id) => document.getElementById(id);
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let timers = [];
+  let current = null;
+
+  function play(key) {
+    timers.forEach(clearTimeout); timers = [];
+    const list = $("fd-msgs");
+    list.textContent = "";
+    F[key].demo.forEach((d, i) => {
+      const li = document.createElement("li");
+      li.className = "fd-msg" + (d.k ? " fd-" + d.k : "");
+      li.textContent = d.m;
+      if (reduce) { list.appendChild(li); return; }
+      timers.push(setTimeout(() => { list.appendChild(li); }, 350 + i * 750));
+    });
+  }
+
+  function open(key) {
+    const f = F[key]; if (!f) return;
+    current = key;
+    $("fd-ic").textContent = f.ic;
+    $("fd-title").textContent = f.title;
+    $("fd-detail").textContent = f.detail;
+    $("fd-replay").textContent = F.replay;
+    if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+    play(key);
+  }
+
+  function close() {
+    timers.forEach(clearTimeout); timers = [];
+    if (typeof dlg.close === "function") dlg.close(); else dlg.removeAttribute("open");
+  }
+
+  document.querySelectorAll(".tile[data-f]").forEach((t) => {
+    t.addEventListener("click", () => open(t.dataset.f));
+    t.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(t.dataset.f); } });
+  });
+  dlg.querySelector(".fd-close").addEventListener("click", close);
+  $("fd-replay").addEventListener("click", () => current && play(current));
+  dlg.addEventListener("click", (e) => { if (e.target === dlg) close(); });   // tap outside the card
+  dlg.addEventListener("close", () => { timers.forEach(clearTimeout); timers = []; });
+})();
