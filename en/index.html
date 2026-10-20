@@ -56,7 +56,7 @@
     <div class="hero-copy">
       <span class="eyebrow">A personal secretary on your phone</span>
       <h1>You keep the calendar. <em>Meira gets you there.</em></h1>
-      <p class="lede">Meira reads your calendar and works backwards from every meeting. She decides when you wake up, how long you need to get ready, when to leave and which way to go. Then she tells you each one at the right moment.</p>
+      <p class="lede">Meira reads your calendar, counts back from every meeting, and tells you when to wake up, when to leave and how to get there.</p>
       <div class="get">
         <a class="btn btn-lg" href="https://github.com/MeiraSecretary/meirasecretary.github.io/releases/latest/download/Meira.apk">
           <svg width="20" height="20" aria-hidden="true"><use href="#dl"/></svg>Download for Android
@@ -115,25 +115,25 @@
   </header>
 </div>
 
-<section class="band" id="how">
+<section class="band" id="features">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">How it works</span>
-      <h2>You add the meeting. Meira handles the rest.</h2>
+      <span class="eyebrow">What Meira solves</span>
+      <h2>You keep a calendar. She handles the rest.</h2>
     </div>
-    <div class="steps">
-      <div class="how">
-        <h3>Put it in your calendar</h3>
-        <p>As you already do. Meira picks up new events on her own, including the ones a recruiter sends with the address hidden in the invitation text.</p>
-      </div>
-      <div class="how">
-        <h3>She works backwards</h3>
-        <p>From the start time she counts back through the trip, the time you need to get ready and anything you should prepare, all the way to your alarm.</p>
-      </div>
-      <div class="how">
-        <h3>She gets you out the door</h3>
-        <p>The alarm rings, the "leave now" arrives on time, and if you're still home when the bus is close, she tells you that too.</p>
-      </div>
+    <div class="tiles">
+      <article class="tile"><span class="tile-ic" aria-hidden="true">🗓️</span><h3>Every calendar, one place</h3><p>Google, your phone, Outlook and Teams.</p></article>
+      <article class="tile"><span class="tile-ic" aria-hidden="true">⏪</span><h3>Works backwards</h3><p>From the meeting to your alarm.</p></article>
+      <article class="tile"><span class="tile-ic" aria-hidden="true">⏰</span><h3>An alarm that sets itself</h3><p>From the time you need to leave.</p></article>
+      <article class="tile"><span class="tile-ic" aria-hidden="true">🚌</span><h3>The best way there</h3><p>Bus, train, taxi, car or bike.</p></article>
+      <article class="tile"><span class="tile-ic" aria-hidden="true">🚧</span><h3>Trouble on your route</h3><p>Strikes, works and traffic from the news.</p></article>
+      <article class="tile"><span class="tile-ic" aria-hidden="true">📍</span><h3>Clashes between places</h3><p>Can I make Herzliya to Holon?</p></article>
+      <article class="tile"><span class="tile-ic" aria-hidden="true">🔁</span><h3>Meeting moved?</h3><p>Alternatives based on where you'll be.</p></article>
+      <article class="tile"><span class="tile-ic" aria-hidden="true">🎯</span><h3>Interview prep</h3><p>Study time, research on the interviewer, a recap of last time.</p></article>
+      <article class="tile"><span class="tile-ic" aria-hidden="true">🧠</span><h3>Knows you</h3><p>Get-ready time, workouts, car or no car.</p></article>
+      <article class="tile"><span class="tile-ic" aria-hidden="true">🔔</span><h3>Nudge meter</h3><p>You choose how hard she pushes.</p></article>
+      <article class="tile"><span class="tile-ic" aria-hidden="true">📵</span><h3>Study mode</h3><p>Blocks WhatsApp, Instagram and TikTok.</p></article>
+      <article class="tile tile-soon"><span class="tile-ic" aria-hidden="true">🤝</span><h3>Group time</h3><p>Finds a slot that works for everyone.</p><span class="tag tag-soon">Soon</span></article>
     </div>
   </div>
 </section>
@@ -143,7 +143,6 @@
     <div class="sec-head">
       <span class="eyebrow">Try it</span>
       <h2>Pick a meeting. Watch Meira plan the morning.</h2>
-      <p class="lede">Every time here is worked out from the meeting backwards, the same way Meira does it. Change how you like to travel and the whole morning moves.</p>
     </div>
     <div class="demo">
       <div class="controls">
@@ -159,15 +158,7 @@
           <input type="radio" name="mode" id="mode-bus" value="bus"><label for="mode-bus">Bus</label>
           <input type="radio" name="mode" id="mode-car" value="car"><label for="mode-car">Car</label>
         </fieldset>
-        <div class="assume">
-          <strong>What Meira knows about you in this example</strong>
-          <ul>
-            <li>You leave from home in Tel Aviv.</li>
-            <li>Getting ready takes you <span class="t">45</span> min. She learned that from your mornings, not from a default.</li>
-            <li>You like a few minutes after the alarm before you start.</li>
-            <li>Timetables here are sample data.</li>
-          </ul>
-        </div>
+        <p class="assume">Sample times · leaving from Tel Aviv · 45 min to get ready (learned from your mornings)</p>
       </div>
       <div class="result" id="result" aria-live="polite">
         <div class="result-head"><h3 id="r-title">Job interview</h3><span class="t" id="r-when">10:00 · Ra'anana</span></div>
@@ -185,116 +176,11 @@
   </div>
 </section>
 
-<section class="band" id="features">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Everything Meira does</span>
-      <h2>One secretary who sees your whole day, including the trip.</h2>
-      <p class="lede">Your calendars, your trips, your habits and what's happening on the roads. Meira puts it all together and decides when you wake up, when you leave and how you get there.</p>
-    </div>
-
-    <div class="chapter">
-      <div class="ch-head">
-        <div class="ch-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
-        <h3>All your calendars, one view</h3>
-        <p>Most important of all: Meira sees every calendar you have together, and treats travel as a task on it.</p>
-      </div>
-      <div class="ch-cards">
-        <article class="feat"><span class="tag tag-new">New</span><h4>Many calendars, one picture</h4><p>Google Calendar, the calendars on your phone, and Outlook and Teams, with several accounts at once. A meeting that appears in two calendars counts once.</p><p class="say">✓ Google, phone and Outlook connected</p></article>
-        <article class="feat"><h4>The trip is a task</h4><p>Between two meetings there's a trip, and Meira puts it on your timeline: how long, which way, and when to leave. You see in advance whether you'll make it or be late.</p><p class="say">🚌 Leave 12:45 · in Holon 13:20</p></article>
-        <article class="feat"><span class="tag tag-new">New</span><h4>Notices when things change</h4><p>A meeting moved or got cancelled? Meira spots it, tells you, and offers a good use for the freed time, even when the app is closed.</p><p class="say">🗓️ Your 14:00 was cancelled. Use the hour to study?</p></article>
-      </div>
-    </div>
-
-    <div class="chapter">
-      <div class="ch-head">
-        <div class="ch-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M5 3 2 6M19 3l3 3"/></svg></div>
-        <h3>Works backwards from the meeting</h3>
-        <p>From the meeting's start time Meira counts back, and you just get the times.</p>
-      </div>
-      <div class="ch-cards">
-        <article class="feat"><h4>From the meeting, backwards</h4><p>The trip, your get-ready time, prep for an interview or exam, all the way to your alarm. Each step is worked out from the one after it.</p><p class="say">10:00 interview ← 08:28 leave ← 07:10 wake</p></article>
-        <article class="feat"><h4>An alarm that sets itself</h4><p>A real alarm on your phone, set from the morning's first departure. It always shows on the Today screen, and one tap turns it off or moves it.</p><p class="say">⏰ Tomorrow 07:10 · set from the 08:36 bus</p></article>
-        <article class="feat"><h4>When to leave for the next one</h4><p>Not just in the morning: all day long Meira tells you when to leave so you arrive on time, and if the bus is close and you haven't left, she says that too.</p><p class="say">🚪 Leave now! Bus 29 in 8 min</p></article>
-      </div>
-    </div>
-
-    <div class="chapter">
-      <div class="ch-head">
-        <div class="ch-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5M9 8h7M9 12h5"/></svg></div>
-        <h3>Gets you ready for what matters</h3>
-        <p>An interview, an exam or an important meeting? Meira sees it on your calendar and makes sure you walk in prepared.</p>
-      </div>
-      <div class="ch-cards">
-        <article class="feat"><h4>Study time, without asking</h4><p>For an interview or exam, Meira books prep time two days before, the day before, and on the morning itself before you leave. Then she reminds you when it's time.</p><p class="say">📚 Interview in 2 days. Prep tonight, 19:00</p></article>
-        <article class="feat"><h4>Research on the company and interviewer</h4><p>Meira searches the web for the company, the role and the person you're meeting, and the questions they tend to ask there. Every point comes with its source.</p><p class="say">🔎 3 things about the company · 3 questions to ask</p></article>
-        <article class="feat"><h4>A recap of last time</h4><p>The day before every meeting you get a short brief: what happened last time you met that person, what to bring, and what to remember.</p><p class="say">🗂️ Last time you discussed the Q4 budget</p></article>
-      </div>
-    </div>
-
-    <div class="chapter">
-      <div class="ch-head">
-        <div class="ch-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.5 19H16a3.5 3.5 0 0 0 0-7H8a3.5 3.5 0 0 1 0-7h7.5"/></svg></div>
-        <h3>The best way there</h3>
-        <p>No more looking up addresses in Maps, Waze or Moovit. Meira finds the way herself.</p>
-      </div>
-      <div class="ch-cards">
-        <article class="feat"><h4>Every way to get there</h4><p>Bus, train, taxi, car, bike or on foot. She starts with the way you like, and if it won't get you there on time, she picks the next one and tells you why.</p><p class="say">No train in time, so Bus 29 at 08:36 🚌</p></article>
-        <article class="feat"><h4>Smarter routes</h4><p>She compares door to door, including parking, walking and waiting for the bus, and suggests the fastest. Left your bike or car somewhere else? She plans how to get back to it, on a map.</p><p class="say">🚲 Bus to the office, then ride home</p></article>
-        <article class="feat"><span class="tag tag-new">New</span><h4>Disruptions from the news</h4><p>Meira checks the news for anything that could hit your route: train works, closures, strikes, accidents and heavy traffic. If there's something, you hear about it before you leave.</p><p class="say">⚠️ Possible disruption on the Haifa train this morning</p></article>
-      </div>
-    </div>
-
-    <div class="chapter">
-      <div class="ch-head">
-        <div class="ch-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
-        <h3>Smart decisions by location</h3>
-        <p>Meira doesn't just check times. She checks where you'll be, and how long it takes to get there from there.</p>
-      </div>
-      <div class="ch-cards">
-        <article class="feat"><h4>Clashes between places</h4><p>Two meetings don't overlap on the calendar, but one is in Herzliya and the next in Holon? Meira checks there's enough time for the trip between them, and warns you early.</p><p class="say">⚠️ 13:00 in Holon won't work after 12:45 in Herzliya</p></article>
-        <article class="feat"><h4>"Can I add a meeting?"</h4><p>Before you say yes, she checks whether it fits your day, counting the trip in and out, and whether the place is open at that hour.</p><p class="say">✗ 13:00 doesn't fit · 13:30 does</p></article>
-        <article class="feat"><h4>Meeting moved? Smart alternatives</h4><p>When a meeting changes, Meira suggests free times that actually work, based on where you'll be before and after, and checks each one before she offers it.</p><p class="say">Interview moved to Tuesday. 11:00 or 15:30 work</p></article>
-      </div>
-    </div>
-
-    <div class="chapter">
-      <div class="ch-head">
-        <div class="ch-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
-        <h3>She gets to know you</h3>
-        <p>The more you use her, the less you have to tell her.</p>
-      </div>
-      <div class="ch-cards">
-        <article class="feat"><h4>Learns about you</h4><p>How long you take to get ready, when you work out, which days you're free, and whether you have a car. When she gets it wrong, she corrects herself.</p><p class="say">Getting ready took 45 min, not 30. Noted ✓</p></article>
-        <article class="feat"><h4>Nudge meter</h4><p>You choose on a slider how hard Meira pushes, from a gentle reminder to a coach who doesn't let go.</p><p class="say">Nudging: <span class="meter" aria-label="two of three"><i></i><i></i><i class="off"></i></span></p></article>
-        <article class="feat"><span class="tag tag-beta">Beta</span><h4>Motivation and focus</h4><p>A study mode that blocks WhatsApp, Instagram and TikTok until you're done, and a weekly look at what you actually did (only if you turn it on).</p><p class="say">📚 You said you were studying! Back to it?</p></article>
-      </div>
-    </div>
-
-    <div class="chapter chapter-soon">
-      <div class="ch-head">
-        <div class="ch-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M15 14.5a5 5 0 0 1 6.5 5.5"/></svg></div>
-        <h3>Coming soon</h3>
-        <p>What we're building right now.</p>
-      </div>
-      <div class="ch-cards">
-        <article class="feat"><span class="tag tag-soon">Soon</span><h4>A time that works for the whole group</h4><p>Meira will look at every participant's calendar and find a time that suits everyone, including each person's trip.</p><p class="say">🤝 Thursday 17:00 works for all 5</p></article>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="fit">
   <div class="wrap fit">
     <div class="fit-copy">
       <span class="eyebrow">Before you say yes</span>
       <h2>"Can I make it?" answered with the drive included.</h2>
-      <p class="lede">Most calendars only check that two meetings don't overlap. Meira also counts the trip between them. Back-to-back across town is a clash, even when the calendar shows a free slot.</p>
-      <ul>
-        <li>Checks whether a new meeting fits, counting the trip in and out</li>
-        <li>Flags clashes early, and offers what could be moved</li>
-        <li>Knows which of your appointments can't move</li>
-      </ul>
     </div>
     <div class="fit-card">
       <p class="fit-q">Dentist at 13:00 in Holon?</p>
@@ -322,7 +208,7 @@
     <div class="sec-head">
       <span class="eyebrow">Everything in one place</span>
       <h2>No more checking five apps before you leave.</h2>
-      <p class="lede">No more looking up addresses in Google Maps, Waze or Moovit to see how to get there. No more working out on your own when to wake up, when to leave home and when to head to the next meeting to be on time.</p>
+      <p class="lede">No more Maps, Waze or Moovit. No more working out when to wake up and when to leave.</p>
     </div>
     <div class="swap">
       <div class="pile" aria-label="What you juggle today">
@@ -334,24 +220,6 @@
         <div><strong>Meira</strong><p>Wake time, get-ready time, the route, the "leave now" and the "did you make it?", all from the calendar you already keep.</p></div>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="day">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">A day with Meira</span>
-      <h2>Short messages, at the right moments.</h2>
-      <p class="lede">She doesn't lecture you. Each message is one line, sent when you need it.</p>
-    </div>
-    <ol class="day">
-      <li><span class="t"><small>Sun</small>19:00</span><div class="bubble" data-tone="meira"><span class="msg">📚 Interview in 2 days. Study block starts now</span><span class="why">She saw it on your calendar and made time to prepare.</span></div></li>
-      <li><span class="t"><small>Tue</small>07:10</span><div class="bubble" data-tone="warn"><span class="msg">⏰ Wake up! Interview at 10:00 in Ra'anana</span><span class="why">Counted back from 10:00: the bus, your routine and 25 min of review.</span></div></li>
-      <li><span class="t"><small>Tue</small>08:16</span><div class="bubble"><span class="msg">🚪 Leave in 12 min. Bus 29 at 08:36</span><span class="why">A heads-up before the real one.</span></div></li>
-      <li><span class="t"><small>Tue</small>08:28</span><div class="bubble" data-tone="warn"><span class="msg">🚪 Leave now! Bus 29 in 8 min</span><span class="why">Your walk to the stop takes 8 min.</span></div></li>
-      <li><span class="t"><small>Tue</small>08:31</span><div class="bubble" data-tone="urgent"><span class="msg">⚠️ Bus in 5 min! Haven't left yet. Next bus at 08:51</span><span class="why">Only if you're still home.</span></div></li>
-      <li><span class="t"><small>Tue</small>09:55</span><div class="bubble" data-tone="good"><span class="msg">📍 Should be arriving now. Made it?</span><span class="why">One tap, and she learns how long the trip really took.</span></div></li>
-    </ol>
   </div>
 </section>
 
